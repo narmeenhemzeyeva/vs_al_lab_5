@@ -1,0 +1,27 @@
+import numpy as np
+def equation(x):
+    return x**2 - np.cos(x)
+
+def simple_approximation(x_guess, tolerance=1e-6, max_iter=100):
+    x = x_guess
+    iteration = 0
+
+    while abs(equation(x)) > tolerance and iteration < max_iter:
+        x = x - 0.1 * equation(x)  # 0.1 təxminən seçilmiş bir dəyərdir, dəyəri dəyişdirərək təsirinizi görmək mümkündür
+        iteration += 1
+
+    if abs(equation(x)) <= tolerance:
+        return x
+    else:
+        return None
+
+# İlk təxmin
+x_guess = 0.5
+
+# Həll edilmiş nöqtə
+x_solution = simple_approximation(x_guess)
+
+if x_solution is not None:
+    print("Həll edilmiş nöqtə: x =", x_solution)
+else:
+    print("Həll tapılmadı.")
